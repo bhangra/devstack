@@ -373,6 +373,9 @@ function install_ovn {
     # NOTE(lucasagomes): To keep things simpler, let's reuse the same
     # RUNDIR for both OVS and OVN. This way we avoid having to specify the
     # --db option in the ovn-{n,s}bctl commands while playing with DevStack
+    if ls $OVS_RUNDIR/openvswitch;
+        sudo unlink $OVS_RUNDIR/openvswitch
+    fi
     sudo ln -s $OVS_RUNDIR $OVN_RUNDIR
 
     if [[ "$OVN_BUILD_FROM_SOURCE" == "True" ]]; then
